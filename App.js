@@ -1,6 +1,5 @@
-import HomeScreen from './components/HomeScreen';
-import { StatusBar } from 'expo-status-bar';
-import { Text, View } from 'react-native';
+import HomeScreen from './HomeScreen';
+import StoryScreen from './StoryScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -11,6 +10,7 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Story" component={StoryScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

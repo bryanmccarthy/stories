@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import { useLayoutEffect } from 'react';
-import { ScrollView, View, Text, SafeAreaView } from 'react-native';
+import { ScrollView, View, Text, SafeAreaView, Button } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 const stories = [
@@ -42,8 +42,7 @@ const stories = [
   },
 ];
 
-function HomeScreen() {
-  const navigation = useNavigation();
+function HomeScreen({ navigation }) {
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -63,6 +62,7 @@ function HomeScreen() {
         {stories.map(story => (
           <View key={story.id} className="border-solid border-2 rounded-lg w-44 h-44 m-2">
             <Text className="text-slate-800 text-sm">{story.name}</Text>
+            <Button title="Read" onPress={() => navigation.navigate('Story', { id: story.id, name: story.name  })} />
           </View>
         ))}
       </ScrollView>
