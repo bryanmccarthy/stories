@@ -1,6 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import { useLayoutEffect } from 'react';
-import { Text, SafeAreaView } from 'react-native';
+import { View, Text, SafeAreaView } from 'react-native';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 function HomeScreen() {
   const navigation = useNavigation();
@@ -12,8 +13,12 @@ function HomeScreen() {
   }, []);
 
   return (
-    <SafeAreaView className="">
-      <Text>Home</Text>
+    <SafeAreaView>
+      {/* Header */}
+      <View className="flex flex-row justify-between items-center px-2 py-1">
+        <Text className="text-slate-800 text-lg">Stories</Text>
+        <Ionicons name="person-outline" size={24} />
+      </View>
     </SafeAreaView>
   );
 }
