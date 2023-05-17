@@ -9,8 +9,20 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Story" component={StoryScreen} />
+        <Stack.Screen 
+          name="Home" 
+          component={HomeScreen} 
+        />
+        <Stack.Screen 
+          name="Story" 
+          component={StoryScreen}
+          options={{ 
+            headerTransparent: true,
+            headerTintColor: 'black',
+            title: '',
+            animation: 'slide_from_bottom',
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
