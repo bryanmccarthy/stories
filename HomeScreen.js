@@ -59,7 +59,7 @@ function HomeScreen({ navigation }) {
       {/* Header */}
       <View className="flex flex-row justify-between items-center px-2 py-1 bg-indigo-100">
         <Text className="text-2xl">Stories</Text>
-        <Ionicons name="person-circle-outline" size={46} color="black" />
+        <Ionicons name="person-circle-outline" size={44} color="black" />
       </View>
       {/* Search & filters */}
       <View className="relative flex flex-row border-solid border rounded-2xl h-8 px-2 items-center border-black mt-1 mx-1 bg-indigo-100">

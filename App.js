@@ -16,12 +16,6 @@ export default function App() {
         <Stack.Screen 
           name="Story" 
           component={StoryScreen}
-          options={{ 
-            headerTransparent: true,
-            headerTintColor: 'black',
-            title: '',
-            animation: 'slide_from_bottom',
-          }}
         />
       </Stack.Navigator>
     </NavigationContainer>

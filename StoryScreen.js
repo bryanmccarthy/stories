@@ -13,20 +13,22 @@ function StoryScreen({ route, navigation }) {
             navigation.goBack();
           }
         }>
-          {/* back icon */}
-          <Ionicons name="return-up-back" size={36} color="black" />
+        <Ionicons name="return-down-back" size={34} color="black" />
         </Text>
       ),
+      headerShown: true,
+      headerTransparent: true,
+      headerTintColor: 'black',
+      title: name,
+      animation: 'easeInEaseOut',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      }
     });
   }, [navigation]);
 
   return (
-    <View className="flex">
-      <View className="bg-indigo-200 m-10 mt-48 p-10">
-        <Text>Story Screen</Text>
-        <Text>Story ID: {id}</Text>
-        <Text>Story Name: {name}</Text>
-      </View>
+    <View className="flex flex-1 bg-indigo-100">
     </View>
   );
 }
