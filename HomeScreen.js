@@ -40,6 +40,10 @@ const stories = [
     id: 9,
     name: 'The little ant',
   },
+  {
+    id: 10,
+    name: 'Henry the mouse',
+  },
 ];
 
 function HomeScreen({ navigation }) {
@@ -54,8 +58,8 @@ function HomeScreen({ navigation }) {
     <SafeAreaView className="bg-indigo-100">
       {/* Header */}
       <View className="flex flex-row justify-between items-center px-2 py-1 bg-indigo-100">
-        <Text className="text-xl">Stories</Text>
-        <Ionicons name="person-circle-outline" size={32} color="black" />
+        <Text className="text-2xl">Stories</Text>
+        <Ionicons name="person-circle-outline" size={46} color="black" />
       </View>
       {/* Search & filters */}
       <View className="relative flex flex-row border-solid border rounded-2xl h-8 px-2 items-center border-black mt-1 mx-1 bg-indigo-100">
@@ -71,7 +75,7 @@ function HomeScreen({ navigation }) {
         {stories.map(story => (
           <View key={story.id} className="relative shadow-md shadow-slate-400 w-40 h-40 m-3">
             <ImageBackground source={require('./assets/elephant.jpeg')} style={{ width: '100%', height: '100%' }} imageStyle={{ borderRadius: 8 }}>
-              <View className="absolute right-1.5 -bottom-4 border-solid border rounded-full px-2 pt-2 pb-1 bg-indigo-100">
+              <View className="absolute right-1.5 -bottom-4 rounded-full px-2 pt-2 pb-1 bg-indigo-100">
               <Ionicons
                 name="book"
                 size={28} 
@@ -82,6 +86,8 @@ function HomeScreen({ navigation }) {
             </ImageBackground>
           </View>
         ))}
+        {/* Scroll room */}
+        <View className="h-72"></View>
       </ScrollView>
     </SafeAreaView>
   );
