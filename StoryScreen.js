@@ -3,7 +3,7 @@ import { Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 function StoryScreen({ route, navigation }) {
-  const { id, name } = route.params;
+  const { id, title } = route.params;
 
   React.useLayoutEffect(() => {
     navigation.setOptions({
@@ -19,7 +19,7 @@ function StoryScreen({ route, navigation }) {
       headerShown: true,
       headerTransparent: true,
       headerTintColor: 'black',
-      title: name,
+      title: title,
       animation: 'easeInEaseOut',
       headerTitleStyle: {
         fontWeight: 'bold',

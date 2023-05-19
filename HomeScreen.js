@@ -5,27 +5,27 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 const stories = [
   {
     id: 1,
-    name: 'The little ant',
+    title: 'The little ant',
     cover: require('./assets/1.jpeg')
   },
   {
     id: 2,
-    name: 'Henry the mouse',
+    title: 'Henry the mouse',
     cover: require('./assets/2.jpeg')
   },
   {
     id: 3,
-    name: 'The little ant',
+    title: 'The little ant',
     cover: require('./assets/3.png')
   },
   {
     id: 4,
-    name: 'Henry the mouse',
+    title: 'Henry the mouse',
     cover: require('./assets/4.jpeg')
   },
   {
     id: 5,
-    name: 'The little ant',
+    title: 'The little ant',
     cover: require('./assets/5.jpeg')
   },
   {
@@ -35,22 +35,22 @@ const stories = [
   },
   {
     id: 7,
-    name: 'The little ant',
+    title: 'The little ant',
     cover: require('./assets/7.jpeg')
   },
   {
     id: 8,
-    name: 'Henry the mouse',
+    title: 'Henry the mouse',
     cover: require('./assets/8.png')
   },
   {
     id: 9,
-    name: 'The little ant',
+    title: 'The little ant',
     cover: require('./assets/9.png')
   },
   {
     id: 10,
-    name: 'Henry the mouse',
+    title: 'Henry the mouse',
     cover: require('./assets/10.jpeg')
   },
 ];
@@ -89,7 +89,7 @@ function HomeScreen({ navigation }) {
                 name="book"
                 size={28} 
                 color="black"
-                onPress={() => navigation.navigate('Story', { id: story.id, name: story.name  })}
+                onPress={() => navigation.navigate('Story', { id: story.id, title: story.title  })}
               />
               </View>
             </ImageBackground>
