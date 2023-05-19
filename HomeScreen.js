@@ -64,16 +64,21 @@ function HomeScreen({ navigation }) {
   }, []);
 
   return (
-    <SafeAreaView className="bg-indigo-100">
+    <SafeAreaView className="bg-indigo-100 w-full h-full">
       {/* Header */}
       <View className="flex flex-row justify-between items-center px-2 py-1 bg-indigo-100">
         <Text className="text-2xl">Stories</Text>
-        <Ionicons name="person-circle-outline" size={44} color="black" />
+        <Ionicons 
+          name="person-circle-outline" 
+          size={44} 
+          color="black" 
+          onPress={() => navigation.navigate('Profile')}
+        />
       </View>
       {/* Search & filters */}
       <View className="relative flex flex-row border-solid border rounded-2xl h-8 my-2 px-2 items-center border-black mt-1 mx-1 bg-indigo-100">
           <Ionicons name="search-outline" size={18} color="black" />
-          <TextInput className="absolute w-64 px-7 py-2" placeholder="Search" />
+          <TextInput className="absolute w-6/12 px-7 py-2" placeholder="Search" />
           <View className="absolute right-1 flex flex-row">
             <Ionicons name="filter-outline" size={18} color="black" />
             <Text className="text-sm px-1">Filters</Text>
@@ -82,7 +87,7 @@ function HomeScreen({ navigation }) {
       {/* Stories */}
       <ScrollView contentContainerStyle={styles.wrapper}>
         {stories.map(story => (
-          <View key={story.id} className="relative shadow-md shadow-slate-400 w-40 h-52 m-3">
+          <View key={story.id} className="relative shadow-md shadow-slate-400 w-40 h-52 m-4 mb-6">
             <ImageBackground source={story.cover} style={{ width: '100%', height: '100%' }} imageStyle={{ borderRadius: 8 }}>
               <View className="absolute right-2 -bottom-4 rounded-full px-2 pt-2 pb-1 bg-indigo-100">
               <Ionicons

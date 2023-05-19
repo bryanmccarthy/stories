@@ -1,9 +1,8 @@
+import { View, Text } from 'react-native';
 import { useLayoutEffect } from 'react';
-import { Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
-function StoryScreen({ route, navigation }) {
-  const { id, title } = route.params;
+function ProfileScreen({ navigation }) {
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -19,10 +18,9 @@ function StoryScreen({ route, navigation }) {
       headerShown: true,
       headerTransparent: true,
       headerTintColor: 'black',
-      title: title,
       headerTitleStyle: {
         fontWeight: 'bold',
-      }
+      },
     });
   }, [navigation]);
 
@@ -32,4 +30,4 @@ function StoryScreen({ route, navigation }) {
   );
 }
 
-export default StoryScreen;
+export default ProfileScreen;
