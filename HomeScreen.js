@@ -3,7 +3,7 @@ import { ScrollView, View, Text, SafeAreaView, TextInput, ImageBackground, Modal
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useState } from 'react';
 
-const stories = [
+const testStories = [
   {
     id: 1,
     title: 'The little ant',
@@ -36,7 +36,7 @@ const stories = [
   },
   {
     id: 6,
-    name: 'Little blue bird',
+    title: 'Little blue bird',
     genre: 'Fiction',
     cover: require('./assets/6.jpeg')
   },
@@ -67,6 +67,7 @@ const stories = [
 ];
 
 function HomeScreen({ navigation }) {
+  const [stories, setStories] = useState(testStories);
   const [modalVisible, setModalVisible] = useState(false);
   const [storyTitle, setStoryTitle] = useState('');
   const [storyGenre, setStoryGenre] = useState('');
@@ -83,8 +84,13 @@ function HomeScreen({ navigation }) {
     setModalVisible(true);
   }
 
+  const handleSearch = (text) => {
+    const filteredStories = testStories.filter(story => story.title.toLowerCase().includes(text.toLowerCase()));
+    setStories(filteredStories);
+  }
+
   return (
-    <SafeAreaView className="bg-indigo-100 w-full h-full">
+    <SafeAreaView className="bg-indigo-300 w-full h-full">
       {/* Modal */}
       <Modal
         animationType="slide"
@@ -96,33 +102,36 @@ function HomeScreen({ navigation }) {
       }>
         <TouchableWithoutFeedback onPress={() => setModalVisible(false)}>
           <View className="flex flex-col justify-center items-center h-full">
-            <View className="flex flex-col justify-center items-center bg-white w-11/12 h-1/2 rounded-2xl">
+            <View className="flex flex-col justify-center items-center bg-white w-10/12 h-1/2 rounded-2xl">
               <Text className="text-2xl font-bold mt-4">Story Info</Text>
               <Text className="text-lg font-bold mt-4">Title: {storyTitle}</Text>
               <Text className="text-lg font-bold mt-4">Genre: {storyGenre}</Text>
-              <Text className="text-lg font-bold mt-4">Description</Text>
             </View>
           </View>
         </TouchableWithoutFeedback>
       </Modal>
       {/* Header */}
-      <View className="flex flex-row justify-between items-center px-2 py-1 bg-indigo-100">
-        <Text className="text-2xl">Stories</Text>
+      <View className="flex flex-row justify-between items-center px-2 py-1">
+        <Text className="text-3xl">Stories</Text>
         <Ionicons 
           name="person-circle-outline" 
-          size={44} 
+          size={48} 
           color="black" 
           onPress={() => navigation.navigate('Profile')}
         />
       </View>
-      {/* Search & filters */}
-      <View className="relative flex flex-row border-solid border rounded-2xl h-8 my-2 px-2 items-center border-black mt-1 mx-1 bg-indigo-100">
-          <Ionicons name="search-outline" size={18} color="black" />
-          <TextInput className="absolute w-6/12 px-7 py-2" placeholder="Search" />
-          <View className="absolute right-1 flex flex-row">
-            <Ionicons name="filter-outline" size={18} color="black" />
-            <Text className="text-sm px-1">Filters</Text>
-          </View>
+      {/* Search & filter */}
+      <View className="flex flex-row justify-between items-center px-2 py-1">
+        <TextInput
+          className="w-3/5 h-10 px-2 rounded-full bg-white"
+          placeholder="Search"
+          onChangeText={(text) => handleSearch(text)}
+        />
+        <Ionicons
+          name="options-outline"
+          size={48}
+          style={{ color: 'black' }}
+        />
       </View>
       {/* Stories */}
       <ScrollView contentContainerStyle={styles.wrapper}>
