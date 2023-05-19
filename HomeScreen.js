@@ -7,63 +7,81 @@ const stories = [
   {
     id: 1,
     title: 'The little ant',
+    genre: 'Fiction',
     cover: require('./assets/1.jpeg')
   },
   {
     id: 2,
     title: 'Henry the mouse',
+    genre: 'Mystery',
     cover: require('./assets/2.jpeg')
   },
   {
     id: 3,
-    title: 'The little ant',
+    title: 'Bob the dog',
+    genre: 'Fiction',
     cover: require('./assets/3.png')
   },
   {
     id: 4,
-    title: 'Henry the mouse',
+    title: 'The frog prince',
+    genre: 'Fantasy',
     cover: require('./assets/4.jpeg')
   },
   {
     id: 5,
-    title: 'The little ant',
+    title: 'A day in the life of a cat',
+    genre: 'Mystery',
     cover: require('./assets/5.jpeg')
   },
   {
     id: 6,
-    name: 'Henry the mouse',
+    name: 'Little blue bird',
+    genre: 'Fiction',
     cover: require('./assets/6.jpeg')
   },
   {
     id: 7,
-    title: 'The little ant',
+    title: 'Animal farm',
+    genre: 'Fairytale',
     cover: require('./assets/7.jpeg')
   },
   {
     id: 8,
-    title: 'Henry the mouse',
+    title: 'Snakes and ladders',
+    genre: 'Fantasy',
     cover: require('./assets/8.png')
   },
   {
     id: 9,
-    title: 'The little ant',
+    title: 'Over the moon',
+    genre: 'Sci-fi',
     cover: require('./assets/9.png')
   },
   {
     id: 10,
-    title: 'Henry the mouse',
+    title: 'The Big Bang',
+    genre: 'Mystery',
     cover: require('./assets/10.jpeg')
   },
 ];
 
 function HomeScreen({ navigation }) {
   const [modalVisible, setModalVisible] = useState(false);
+  const [storyTitle, setStoryTitle] = useState('');
+  const [storyGenre, setStoryGenre] = useState('');
 
   useLayoutEffect(() => {
     navigation.setOptions({
       headerShown: false,
     });
   }, []);
+
+  const handleShowModal = (story) => {
+    setStoryTitle(story.title);
+    setStoryGenre(story.genre);
+    setModalVisible(true);
+  }
 
   return (
     <SafeAreaView className="bg-indigo-100 w-full h-full">
@@ -77,14 +95,14 @@ function HomeScreen({ navigation }) {
         }
       }>
         <TouchableWithoutFeedback onPress={() => setModalVisible(false)}>
-        <View className="flex flex-col justify-center items-center h-full">
-          <View className="flex flex-col justify-center items-center bg-white w-11/12 h-1/2 rounded-2xl">
-            <Text className="text-2xl font-bold mt-4">Story Info</Text>
-            <Text className="text-lg font-bold mt-4">Title</Text>
-            <Text className="text-lg font-bold mt-4">Genre</Text>
-            <Text className="text-lg font-bold mt-4">Description</Text>
+          <View className="flex flex-col justify-center items-center h-full">
+            <View className="flex flex-col justify-center items-center bg-white w-11/12 h-1/2 rounded-2xl">
+              <Text className="text-2xl font-bold mt-4">Story Info</Text>
+              <Text className="text-lg font-bold mt-4">Title: {storyTitle}</Text>
+              <Text className="text-lg font-bold mt-4">Genre: {storyGenre}</Text>
+              <Text className="text-lg font-bold mt-4">Description</Text>
+            </View>
           </View>
-        </View>
         </TouchableWithoutFeedback>
       </Modal>
       {/* Header */}
@@ -112,19 +130,19 @@ function HomeScreen({ navigation }) {
           <View key={story.id} className="relative shadow-md shadow-slate-400 w-40 h-52 m-4 mb-6">
             <ImageBackground source={story.cover} style={{ width: '100%', height: '100%' }} imageStyle={{ borderRadius: 8 }}>
               {/* Info Icon */}
-              <View className="absolute -bottom-4 right-14 rounded-full px-2 pt-2 pb-1 bg-white">
+              <View className="absolute -bottom-5 right-14 rounded-full px-2 pt-2 pb-1 bg-white">
                 <Ionicons
                   name="help-outline"
-                  size={28}
+                  size={32}
                   style={{ color: 'black' }}
-                  onPress={() => setModalVisible(true)}
+                  onPress={() => handleShowModal(story)}
                 />
               </View>
               {/* Book Icon */}
-              <View className="absolute right-2 -bottom-4 rounded-full px-2 pt-2 pb-1 bg-white">
+              <View className="absolute right-1 -bottom-5 rounded-full px-2 pt-2 pb-1 bg-white">
                 <Ionicons
                   name="book"
-                  size={28} 
+                  size={32} 
                   style={{ color: 'black' }}
                   onPress={() => navigation.navigate('Story', { id: story.id, title: story.title  })}
                 />
