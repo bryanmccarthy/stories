@@ -86,23 +86,23 @@ function Search({ setStories, testStories }) {
         <View className="flex flex-row">
           {/* Age Select */}
           <TouchableWithoutFeedback onPress={handleAgeModal}>
-            <View className="flex flex-row items-center mx-2" onPress={handleAgeModal}>
-              <Text className="text-xl mr-2">Age</Text>
+            <View className={`flex flex-row items-center mx-1 rounded-lg p-1 ${ageModalVisible ? 'bg-black' : 'bg-white'}`}>
+              <Text className={`text-xl mr-2 ${ageModalVisible ? 'text-white' : 'text-black'}`}>Age</Text>
               <Ionicons
                 name="chevron-down"
                 size={28}
-                style={{ color: 'black' }}
+                style={{ color: ageModalVisible ? 'white' : 'black' }}
               />
             </View>
           </TouchableWithoutFeedback>
           {/* Genre Select */}
           <TouchableWithoutFeedback onPress={handleGenreModal}>
-            <View className="flex flex-row items-center mx-2">
-              <Text className="text-xl mr-2">Genre</Text>
+            <View className={`flex flex-row items-center mx-1 rounded-lg p-1 ${genreModalVisible ? 'bg-black' : 'bg-white'}`}>
+              <Text className={`text-xl mr-2 ${genreModalVisible ? 'text-white' : 'text-black'}`}>Genre</Text>
               <Ionicons
                 name="chevron-down"
                 size={28}
-                style={{ color: 'black' }}
+                style={{ color: genreModalVisible ? 'white' : 'black' }}
               />
             </View>
           </TouchableWithoutFeedback>
