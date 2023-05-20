@@ -1,6 +1,5 @@
 import { useLayoutEffect } from 'react';
-import { ScrollView, View, Text, SafeAreaView, TextInput, ImageBackground, Modal, TouchableWithoutFeedback } from 'react-native';
-import Ionicons from '@expo/vector-icons/Ionicons';
+import { View, Text, SafeAreaView, Modal, TouchableWithoutFeedback } from 'react-native';
 import { useState } from 'react';
 import Header from './components/Header/Header';
 import Search from './components/Search/Search';

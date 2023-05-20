@@ -1,5 +1,4 @@
-import { Ionicons } from '@expo/vector-icons';
-import { ImageBackground, Modal, ScrollView, Text, View } from 'react-native';
+import { ScrollView } from 'react-native';
 import StoriesRow from './StoriesRow';
 import GenreLabel from './GenreLabel';
 

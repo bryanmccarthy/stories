@@ -1,5 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
-import { ImageBackground, ScrollView, Text, View } from 'react-native';
+import { ImageBackground, ScrollView, View } from 'react-native';
 
 function StoriesRow({ stories, navigation, handleShowModal, genre }) {
   return (
