@@ -1,5 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
-import { TextInput, View, Text, Modal, TouchableWithoutFeedback } from 'react-native';
+import { TextInput, View, Text, Modal, TouchableWithoutFeedback, Switch } from 'react-native';
 import { useState } from 'react';
 
 function Search({ setStories, testStories }) {
@@ -7,6 +7,9 @@ function Search({ setStories, testStories }) {
   const [filterGenre, setFilterGenre] = useState('');
   const [ageModalVisible, setAgeModalVisible] = useState(false);
   const [genreModalVisible, setGenreModalVisible] = useState(false);
+  const [ageOneSwitch, setAgeOneSwitch] = useState(false);
+  const [ageTwoSwitch, setAgeTwoSwitch] = useState(false);
+  const [ageThreeSwitch, setAgeThreeSwitch] = useState(false);
 
   const handleSearch = (text) => {
     const filteredStories = testStories.filter(story => story.title.toLowerCase().includes(text.toLowerCase()));
@@ -26,6 +29,9 @@ function Search({ setStories, testStories }) {
       setFilterGenre('');
     } else if (filter === 'age') {
       setFilterAge('');
+      setAgeOneSwitch(false);
+      setAgeTwoSwitch(false);
+      setAgeThreeSwitch(false);
     }
   }
 
@@ -35,6 +41,37 @@ function Search({ setStories, testStories }) {
 
   const handleGenreModal = () => {
     setGenreModalVisible(!genreModalVisible);
+  }
+
+  const handleAgeSwitch = (age) => {
+    if (age === '3-5') {
+      if (!ageOneSwitch) {
+        applyFilter('age', age)
+      } else {
+        removeFilter('age');
+      }
+      setAgeTwoSwitch(false);
+      setAgeThreeSwitch(false);
+      setAgeOneSwitch(!ageOneSwitch);
+    } else if (age === '6-8') {
+      if (!ageTwoSwitch) {
+        applyFilter('age', age)
+      } else {
+        removeFilter('age');
+      }
+      setAgeOneSwitch(false);
+      setAgeThreeSwitch(false);
+      setAgeTwoSwitch(!ageTwoSwitch);
+    } else if (age === '9-11') {
+      if (!ageThreeSwitch) {
+        applyFilter('age', age)
+      } else {
+        removeFilter('age');
+      }
+      setAgeOneSwitch(false);
+      setAgeTwoSwitch(false);
+      setAgeThreeSwitch(!ageThreeSwitch);
+    }
   }
 
   return (
@@ -98,7 +135,7 @@ function Search({ setStories, testStories }) {
       </View>
       {/* Age Modal */}
       <Modal 
-        animationType="slide" 
+        animationType="none" 
         transparent={true} 
         visible={ageModalVisible}
         onRequestClose={() => {
@@ -106,16 +143,48 @@ function Search({ setStories, testStories }) {
         }
       }>
         <TouchableWithoutFeedback onPress={() => setAgeModalVisible(false)}>
-          <View className="flex flex-col justify-center items-center h-full">
-            <View className="flex flex-col justify-center items-center h-44 w-44 bg-white">
-              <Text>Age</Text>
+          <View className="relative flex h-full">
+            <View className="absolute right-1 top-40 flex flex-col justify-center items-center h-64 w-64 bg-white rounded-xl">
+              <View className="flex flex-row justify-center items-center w-full px-4 py-2">
+                <Text className="text-lg font-bold mx-4">3 - 5</Text>
+                <Switch
+                  className="mx-4"
+                  trackColor={{ false: "#767577", true: "#81b0ff" }}
+                  thumbColor={filterAge ? "#f5dd4b" : "#f4f3f4"}
+                  ios_backgroundColor="#3e3e3e"
+                  value={ageOneSwitch}
+                  onValueChange={() => handleAgeSwitch('3-5')}
+                />
+              </View>
+              <View className="flex flex-row justify-center items-center w-full px-4 py-2">
+                <Text className="text-lg font-bold mx-4">6 - 8</Text>
+                <Switch
+                  className="mx-4"
+                  trackColor={{ false: "#767577", true: "#81b0ff" }}
+                  thumbColor={filterAge ? "#f5dd4b" : "#f4f3f4"}
+                  ios_backgroundColor="#3e3e3e"
+                  value={ageTwoSwitch}
+                  onValueChange={() => handleAgeSwitch('6-8')}
+                />
+              </View>
+              <View className="flex flex-row justify-center items-center w-full px-4 py-2">
+                <Text className="text-lg font-bold mx-4">9-11</Text>
+                <Switch
+                  className="mx-4"
+                  trackColor={{ false: "#767577", true: "#81b0ff" }}
+                  thumbColor={filterAge ? "#f5dd4b" : "#f4f3f4"}
+                  ios_backgroundColor="#3e3e3e"
+                  value={ageThreeSwitch}
+                  onValueChange={() => handleAgeSwitch('9-11')}
+                />
+              </View>
             </View>
           </View>
         </TouchableWithoutFeedback>
       </Modal>
       {/* Genre Modal */}
       <Modal 
-        animationType="slide" 
+        animationType="none" 
         transparent={true} 
         visible={genreModalVisible}
         onRequestClose={() => {
@@ -123,8 +192,8 @@ function Search({ setStories, testStories }) {
         }
       }>
         <TouchableWithoutFeedback onPress={() => setGenreModalVisible(false)}>
-          <View className="flex flex-col justify-center items-center h-full">
-            <View className="flex flex-col justify-center items-center h-44 w-44 bg-white">
+          <View className="relative flex justify-center items-center h-full">
+            <View className="absolute right-1 top-40 flex flex-col justify-center items-center h-64 w-64 bg-white rounded-xl">
               <Text>Genre</Text>
             </View>
           </View>
