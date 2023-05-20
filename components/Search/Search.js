@@ -12,12 +12,23 @@ function Search({ setStories, testStories }) {
 
   const handleSetFilter = (filter) => {
     setFilters([...filters, filter]);
+
+    const filteredStories = testStories.filter(story => story.age === filter);
+    setStories(filteredStories);
   }
 
   const handleRemoveFilter = (filter) => {
     const newFilters = filters.filter(f => f !== filter);
     setFilters(newFilters);
+
+    if (newFilters.length === 0) {
+      setStories(testStories);
+    } else {
+      const filteredStories = testStories.filter(story => story.age === newFilters[0]);
+      setStories(filteredStories);
+    }
   }
+  
 
   return (
     <View className="flex flex-col px-2 py-1">
@@ -31,7 +42,7 @@ function Search({ setStories, testStories }) {
           name="options-outline"
           size={44}
           style={{ color: 'black' }}
-          onPress={() => handleSetFilter('test')}
+          onPress={() => handleSetFilter('3-5')}
         />
       </View>
       {/* Filters active */}
