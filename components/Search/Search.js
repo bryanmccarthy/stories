@@ -7,9 +7,18 @@ function Search({ setStories, testStories }) {
   const [filterGenre, setFilterGenre] = useState('');
   const [ageModalVisible, setAgeModalVisible] = useState(false);
   const [genreModalVisible, setGenreModalVisible] = useState(false);
+
+  // Age Switches
   const [ageOneSwitch, setAgeOneSwitch] = useState(false);
   const [ageTwoSwitch, setAgeTwoSwitch] = useState(false);
   const [ageThreeSwitch, setAgeThreeSwitch] = useState(false);
+
+  // Genre Switches
+  const [genreFictionSwitch, setGenreFictionSwitch] = useState(false);
+  const [genreMysterySwitch, setGenreMysterySwitch] = useState(false);
+  const [genreFantasySwitch, setGenreFantasySwitch] = useState(false);
+  const [genreFairytaleSwitch, setGenreFairytaleSwitch] = useState(false);
+  const [genreSciFiSwitch, setGenreSciFiSwitch] = useState(false);
 
   const handleSearch = (text) => {
     const filteredStories = testStories.filter(story => story.title.toLowerCase().includes(text.toLowerCase()));
@@ -27,6 +36,11 @@ function Search({ setStories, testStories }) {
   const removeFilter = (filter) => {
     if (filter === 'genre') {
       setFilterGenre('');
+      setGenreFictionSwitch(false);
+      setGenreMysterySwitch(false);
+      setGenreFantasySwitch(false);
+      setGenreFairytaleSwitch(false);
+      setGenreSciFiSwitch(false);
     } else if (filter === 'age') {
       setFilterAge('');
       setAgeOneSwitch(false);
@@ -71,6 +85,65 @@ function Search({ setStories, testStories }) {
       setAgeOneSwitch(false);
       setAgeTwoSwitch(false);
       setAgeThreeSwitch(!ageThreeSwitch);
+    }
+  }
+
+  const handleGenreSwitch = (genre) => {
+    if (genre === 'Fiction') {
+      if (!genreFictionSwitch) {
+        applyFilter('genre', genre)
+      } else {
+        removeFilter('genre');
+      }
+      setGenreMysterySwitch(false);
+      setGenreFantasySwitch(false);
+      setGenreFairytaleSwitch(false);
+      setGenreSciFiSwitch(false);
+      setGenreFictionSwitch(!genreFictionSwitch);
+    } else if (genre === 'Mystery') {
+      if (!genreMysterySwitch) {
+        applyFilter('genre', genre)
+      } else {
+        removeFilter('genre');
+      }
+      setGenreFictionSwitch(false);
+      setGenreFantasySwitch(false);
+      setGenreFairytaleSwitch(false);
+      setGenreSciFiSwitch(false);
+      setGenreMysterySwitch(!genreMysterySwitch);
+    } else if (genre === 'Fantasy') {
+      if (!genreFantasySwitch) {
+        applyFilter('genre', genre)
+      } else {
+        removeFilter('genre');
+      }
+      setGenreFictionSwitch(false);
+      setGenreMysterySwitch(false);
+      setGenreFairytaleSwitch(false);
+      setGenreSciFiSwitch(false);
+      setGenreFantasySwitch(!genreFantasySwitch);
+    } else if (genre === 'Fairytale') {
+      if (!genreFairytaleSwitch) {
+        applyFilter('genre', genre)
+      } else {
+        removeFilter('genre');
+      }
+      setGenreFictionSwitch(false);
+      setGenreMysterySwitch(false);
+      setGenreFantasySwitch(false);
+      setGenreSciFiSwitch(false);
+      setGenreFairytaleSwitch(!genreFairytaleSwitch);
+    } else if (genre === 'Sci-Fi') {
+      if (!genreSciFiSwitch) {
+        applyFilter('genre', genre)
+      } else {
+        removeFilter('genre');
+      }
+      setGenreFictionSwitch(false);
+      setGenreMysterySwitch(false);
+      setGenreFantasySwitch(false);
+      setGenreFairytaleSwitch(false);
+      setGenreSciFiSwitch(!genreSciFiSwitch);
     }
   }
 
@@ -144,9 +217,9 @@ function Search({ setStories, testStories }) {
       }>
         <TouchableWithoutFeedback onPress={() => setAgeModalVisible(false)}>
           <View className="relative flex h-full">
-            <View className="absolute right-1 top-40 flex flex-col justify-center items-center h-64 w-64 bg-white rounded-xl">
-              <View className="flex flex-row justify-center items-center w-full px-4 py-2">
-                <Text className="text-lg font-bold mx-4">3 - 5</Text>
+            <View className="absolute right-1 top-40 flex flex-col justify-center items-center h-64 w-64 p-10 bg-white rounded-xl">
+              <View className="flex flex-row justify-between items-center w-full px-4 py-2">
+                <Text className="text-lg font-bold">3 - 5</Text>
                 <Switch
                   className="mx-4"
                   trackColor={{ false: "#767577", true: "#81b0ff" }}
@@ -156,8 +229,8 @@ function Search({ setStories, testStories }) {
                   onValueChange={() => handleAgeSwitch('3-5')}
                 />
               </View>
-              <View className="flex flex-row justify-center items-center w-full px-4 py-2">
-                <Text className="text-lg font-bold mx-4">6 - 8</Text>
+              <View className="flex flex-row justify-between items-center w-full px-4 py-2">
+                <Text className="text-lg font-bold">6 - 8</Text>
                 <Switch
                   className="mx-4"
                   trackColor={{ false: "#767577", true: "#81b0ff" }}
@@ -167,8 +240,8 @@ function Search({ setStories, testStories }) {
                   onValueChange={() => handleAgeSwitch('6-8')}
                 />
               </View>
-              <View className="flex flex-row justify-center items-center w-full px-4 py-2">
-                <Text className="text-lg font-bold mx-4">9-11</Text>
+              <View className="flex flex-row justify-between items-center w-full px-4 py-2">
+                <Text className="text-lg font-bold">9-11</Text>
                 <Switch
                   className="mx-4"
                   trackColor={{ false: "#767577", true: "#81b0ff" }}
@@ -193,8 +266,62 @@ function Search({ setStories, testStories }) {
       }>
         <TouchableWithoutFeedback onPress={() => setGenreModalVisible(false)}>
           <View className="relative flex justify-center items-center h-full">
-            <View className="absolute right-1 top-40 flex flex-col justify-center items-center h-64 w-64 bg-white rounded-xl">
-              <Text>Genre</Text>
+            <View className="absolute right-1 top-40 flex flex-col justify-center items-center h-64 w-64 p-5 bg-white rounded-xl">
+              <View className="flex flex-row justify-between items-center w-full px-4 py-2">
+                <Text className="text-lg font-bold">Fiction</Text>
+                <Switch
+                  className="mx-4"
+                  trackColor={{ false: "#767577", true: "#81b0ff" }}
+                  thumbColor={filterGenre ? "#f5dd4b" : "#f4f3f4"}
+                  ios_backgroundColor="#3e3e3e"
+                  value={genreFictionSwitch}
+                  onValueChange={() => handleGenreSwitch('Fiction')}
+                />
+              </View>
+              <View className="flex flex-row justify-between items-center w-full px-4 py-2">
+                <Text className="text-lg font-bold">Mystery</Text>
+                <Switch
+                  className="mx-4"
+                  trackColor={{ false: "#767577", true: "#81b0ff" }}
+                  thumbColor={filterGenre ? "#f5dd4b" : "#f4f3f4"}
+                  ios_backgroundColor="#3e3e3e"
+                  value={genreMysterySwitch}
+                  onValueChange={() => handleGenreSwitch('Mystery')}
+                />
+              </View>
+              <View className="flex flex-row justify-between items-center w-full px-4 py-2">
+                <Text className="text-lg font-bold">Fantasy</Text>
+                <Switch
+                  className="mx-4"
+                  trackColor={{ false: "#767577", true: "#81b0ff" }}
+                  thumbColor={filterGenre ? "#f5dd4b" : "#f4f3f4"}
+                  ios_backgroundColor="#3e3e3e"
+                  value={genreFantasySwitch}
+                  onValueChange={() => handleGenreSwitch('Fantasy')}
+                />
+              </View>
+              <View className="flex flex-row justify-between items-center w-full px-4 py-2">
+                <Text className="text-lg font-bold">Fairytale</Text>
+                <Switch
+                  className="mx-4"
+                  trackColor={{ false: "#767577", true: "#81b0ff" }}
+                  thumbColor={filterGenre ? "#f5dd4b" : "#f4f3f4"}
+                  ios_backgroundColor="#3e3e3e"
+                  value={genreFairytaleSwitch}
+                  onValueChange={() => handleGenreSwitch('Fairytale')}
+                />
+              </View>
+              <View className="flex flex-row justify-between items-center w-full px-4 py-2">
+                <Text className="text-lg font-bold">Sci-Fi</Text>
+                <Switch
+                  className="mx-4"
+                  trackColor={{ false: "#767577", true: "#81b0ff" }}
+                  thumbColor={filterGenre ? "#f5dd4b" : "#f4f3f4"}
+                  ios_backgroundColor="#3e3e3e"
+                  value={genreSciFiSwitch}
+                  onValueChange={() => handleGenreSwitch('Sci-Fi')}
+                />
+              </View>
             </View>
           </View>
         </TouchableWithoutFeedback>
