@@ -45,6 +45,7 @@ const testStories = [
     id: 6,
     title: 'Little blue bird',
     genre: 'Fiction',
+    age: '6-8',
     cover: require('./assets/6.jpeg')
   },
   {
@@ -151,6 +152,7 @@ function HomeScreen({ navigation }) {
   const [modalVisible, setModalVisible] = useState(false);
   const [storyTitle, setStoryTitle] = useState('');
   const [storyGenre, setStoryGenre] = useState('');
+  const [storyAge, setStoryAge] = useState('');
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -161,6 +163,7 @@ function HomeScreen({ navigation }) {
   const handleShowModal = (story) => {
     setStoryTitle(story.title);
     setStoryGenre(story.genre);
+    setStoryAge(story.age);
     setModalVisible(true);
   }
 
@@ -181,6 +184,7 @@ function HomeScreen({ navigation }) {
               <Text className="text-2xl font-bold mt-4">Story Info</Text>
               <Text className="text-lg font-bold mt-4">Title: {storyTitle}</Text>
               <Text className="text-lg font-bold mt-4">Genre: {storyGenre}</Text>
+              <Text className="text-lg font-bold mt-4">Age: {storyAge}</Text>
             </View>
           </View>
         </TouchableWithoutFeedback>

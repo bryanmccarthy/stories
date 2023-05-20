@@ -25,7 +25,7 @@ function ProfileScreen({ navigation }) {
   }, [navigation]);
 
   return (
-    <View className="flex bg-indigo-100 w-full h-full">
+    <View className="flex bg-indigo-200 w-full h-full">
     </View>
   );
 }
