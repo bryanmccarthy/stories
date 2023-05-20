@@ -1,10 +1,12 @@
 import { Ionicons } from '@expo/vector-icons';
-import { TextInput, View, Text } from 'react-native';
+import { TextInput, View, Text, Modal, TouchableWithoutFeedback } from 'react-native';
 import { useState } from 'react';
 
 function Search({ setStories, testStories }) {
   const [filterAge, setFilterAge] = useState('');
   const [filterGenre, setFilterGenre] = useState('');
+  const [ageModalVisible, setAgeModalVisible] = useState(false);
+  const [genreModalVisible, setGenreModalVisible] = useState(false);
 
   const handleSearch = (text) => {
     const filteredStories = testStories.filter(story => story.title.toLowerCase().includes(text.toLowerCase()));
@@ -27,26 +29,47 @@ function Search({ setStories, testStories }) {
     }
   }
 
+  const handleAgeModal = () => {
+    setAgeModalVisible(!ageModalVisible);
+  }
+
+  const handleGenreModal = () => {
+    setGenreModalVisible(!genreModalVisible);
+  }
+
   return (
     <View className="flex flex-col px-2 py-1">
       <View className="flex flex-row justify-between items-center">
         <TextInput
-          className="w-3/5 h-10 px-2 rounded-full bg-white"
+          className="w-1/2 h-10 px-2 rounded-full bg-white"
           placeholder="Search"
           onChangeText={(text) => handleSearch(text)}
         />
-        <Ionicons
-          name="paw-outline"
-          size={44}
-          style={{ color: 'black' }}
-          onPress={() => applyFilter('age', '3-5')}
-        />
-        <Ionicons
-          name="options-outline"
-          size={44}
-          style={{ color: 'black' }}
-          onPress={() => applyFilter('genre', 'Mystery')}
-        />
+        {/* Filters */}
+        <View className="flex flex-row">
+          {/* Age Select */}
+          <TouchableWithoutFeedback onPress={handleAgeModal}>
+            <View className="flex flex-row items-center mx-2" onPress={handleAgeModal}>
+              <Text className="text-xl mr-2">Age</Text>
+              <Ionicons
+                name="chevron-down"
+                size={28}
+                style={{ color: 'black' }}
+              />
+            </View>
+          </TouchableWithoutFeedback>
+          {/* Genre Select */}
+          <TouchableWithoutFeedback onPress={handleGenreModal}>
+            <View className="flex flex-row items-center mx-2">
+              <Text className="text-xl mr-2">Genre</Text>
+              <Ionicons
+                name="chevron-down"
+                size={28}
+                style={{ color: 'black' }}
+              />
+            </View>
+          </TouchableWithoutFeedback>
+        </View> 
       </View>
       {/* Filters active */}
       <View className="flex flex-row items-center">
@@ -73,6 +96,40 @@ function Search({ setStories, testStories }) {
           </View>
         )}
       </View>
+      {/* Age Modal */}
+      <Modal 
+        animationType="slide" 
+        transparent={true} 
+        visible={ageModalVisible}
+        onRequestClose={() => {
+          setAgeModalVisible(false);
+        }
+      }>
+        <TouchableWithoutFeedback onPress={() => setAgeModalVisible(false)}>
+          <View className="flex flex-col justify-center items-center h-full">
+            <View className="flex flex-col justify-center items-center h-44 w-44 bg-white">
+              <Text>Age</Text>
+            </View>
+          </View>
+        </TouchableWithoutFeedback>
+      </Modal>
+      {/* Genre Modal */}
+      <Modal 
+        animationType="slide" 
+        transparent={true} 
+        visible={genreModalVisible}
+        onRequestClose={() => {
+          setGenreModalVisible(false);
+        }
+      }>
+        <TouchableWithoutFeedback onPress={() => setGenreModalVisible(false)}>
+          <View className="flex flex-col justify-center items-center h-full">
+            <View className="flex flex-col justify-center items-center h-44 w-44 bg-white">
+              <Text>Genre</Text>
+            </View>
+          </View>
+        </TouchableWithoutFeedback>
+      </Modal>
   </View>
   );
 }
