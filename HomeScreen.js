@@ -2,6 +2,9 @@ import { useLayoutEffect } from 'react';
 import { ScrollView, View, Text, SafeAreaView, TextInput, ImageBackground, Modal, TouchableWithoutFeedback } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useState } from 'react';
+import Header from './components/Header/Header';
+import Search from './components/Search/Search';
+import Stories from './components/Stories/Stories';
 
 const testStories = [
   {
@@ -84,11 +87,6 @@ function HomeScreen({ navigation }) {
     setModalVisible(true);
   }
 
-  const handleSearch = (text) => {
-    const filteredStories = testStories.filter(story => story.title.toLowerCase().includes(text.toLowerCase()));
-    setStories(filteredStories);
-  }
-
   return (
     <SafeAreaView className="bg-indigo-300 w-full h-full">
       {/* Modal */}
@@ -110,69 +108,13 @@ function HomeScreen({ navigation }) {
           </View>
         </TouchableWithoutFeedback>
       </Modal>
-      {/* Header */}
-      <View className="flex flex-row justify-between items-center px-2 py-1">
-        <Text className="text-3xl">Stories</Text>
-        <Ionicons 
-          name="person-circle-outline" 
-          size={48} 
-          color="black" 
-          onPress={() => navigation.navigate('Profile')}
-        />
-      </View>
-      {/* Search & filter */}
-      <View className="flex flex-row justify-between items-center px-2 py-1">
-        <TextInput
-          className="w-3/5 h-10 px-2 rounded-full bg-white"
-          placeholder="Search"
-          onChangeText={(text) => handleSearch(text)}
-        />
-        <Ionicons
-          name="options-outline"
-          size={48}
-          style={{ color: 'black' }}
-        />
-      </View>
-      {/* Stories */}
-      <ScrollView contentContainerStyle={styles.wrapper}>
-        {stories.map(story => (
-          <View key={story.id} className="relative shadow-md shadow-slate-400 w-40 h-52 m-4 mb-6">
-            <ImageBackground source={story.cover} style={{ width: '100%', height: '100%' }} imageStyle={{ borderRadius: 8 }}>
-              {/* Info Icon */}
-              <View className="absolute -bottom-5 right-14 rounded-full px-2 pt-2 pb-1 bg-white">
-                <Ionicons
-                  name="help-outline"
-                  size={32}
-                  style={{ color: 'black' }}
-                  onPress={() => handleShowModal(story)}
-                />
-              </View>
-              {/* Book Icon */}
-              <View className="absolute right-1 -bottom-5 rounded-full px-2 pt-2 pb-1 bg-white">
-                <Ionicons
-                  name="book"
-                  size={32} 
-                  style={{ color: 'black' }}
-                  onPress={() => navigation.navigate('Story', { id: story.id, title: story.title  })}
-                />
-              </View>
-            </ImageBackground>
-          </View>
-        ))}
-      </ScrollView>
+
+      <Header navigation={navigation} />
+      <Search setStories={setStories} testStories={testStories} />
+      <Stories stories={stories} navigation={navigation} handleShowModal={handleShowModal} />
+      
     </SafeAreaView>
   );
 }
-
-// Styles for ScrollView
-const styles = {
-  wrapper: {
-    display: 'flex',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-    paddingBottom: 120,
-  },
-};
 
 export default HomeScreen;
