@@ -165,7 +165,7 @@ function HomeScreen({ navigation }) {
   }
 
   return (
-    <SafeAreaView className="bg-indigo-300 w-full h-full">
+    <SafeAreaView className="bg-indigo-200 w-full h-full">
       {/* Modal */}
       <Modal
         animationType="slide"
