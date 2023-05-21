@@ -12,10 +12,10 @@ function Header({ navigation }) {
 
   return (
     <View className="flex flex-row justify-between items-center px-2 py-1">
-      <Text className="text-3xl">Stories</Text>
+      <Text className="text-3xl">Smol Stories</Text>
       <Ionicons 
         name="person-circle-outline" 
-        size={44} 
+        size={48} 
         color="black" 
         onPress={() => navigation.navigate('Profile')}
       />

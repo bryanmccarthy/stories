@@ -1,9 +1,12 @@
-import { useLayoutEffect } from 'react';
+import { useLayoutEffect, useState } from 'react';
 import { Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import Page from './components/Stories/Page';
 
 function StoryScreen({ route, navigation }) {
   const { id, title } = route.params;
+  const length = 10; // TODO: get from params
+  const [page, setPage] = useState(1);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -13,7 +16,7 @@ function StoryScreen({ route, navigation }) {
             navigation.goBack();
           }
         }>
-        <Ionicons name="return-down-back" size={34} color="black" />
+        <Ionicons name="return-down-back" size={44} color="white" />
         </Text>
       ),
       headerShown: true,
@@ -21,14 +24,35 @@ function StoryScreen({ route, navigation }) {
       headerTintColor: 'black',
       title: title,
       headerTitleStyle: {
+        color: 'white',
         fontWeight: 'bold',
       }
     });
   }, [navigation]);
 
   return (
-    <View className="flex bg-indigo-200 w-full h-full">
-    </View>
+    <View className="flex justify-center items-center w-full h-full bg-slate-500">
+      <Page page={page} />
+      {/* Pagination Buttons */}
+      <View className="flex flex-row justify-between items-center w-full h-1/6">
+        <Text
+          onPress={() => {
+            if (page > 1) {
+              setPage(page - 1);
+            }
+        }}>
+          <Ionicons name="chevron-back" size={44} color="white" />
+        </Text>
+        <Text
+          onPress={() => {
+            if (page < length) {
+              setPage(page + 1);
+            }
+        }}>
+          <Ionicons name="chevron-forward" size={44} color="white" />
+        </Text>
+      </View>
+    </View>        
   );
 }
 

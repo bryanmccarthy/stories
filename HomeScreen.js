@@ -40,6 +40,7 @@ const testStories = [
     title: 'A day in the life of a cat',
     genre: 'Mystery',
     age: '6-8',
+    page: 1,
     cover: require('./assets/5.jpeg')
   },
   {
@@ -98,6 +99,7 @@ function HomeScreen({ navigation }) {
     setStoryTitle(story.title);
     setStoryGenre(story.genre);
     setStoryAge(story.age);
+    setStoryPage(story.page);
     setModalVisible(true);
   }
 
@@ -106,7 +108,7 @@ function HomeScreen({ navigation }) {
 
     navigation.navigate('Story', {
       storyID: storyID,
-      storyTitle: storyTitle
+      storyTitle: storyTitle,
     });
   }
 
