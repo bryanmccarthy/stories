@@ -25,7 +25,7 @@ function Search({ setStories, testStories }) {
     setStories(filteredStories);
   }
 
-  const applyFilter = (filterType, filter) => {
+  const addFilter = (filterType, filter) => {
     if (filterType === 'genre') {
       setFilterGenre(filter);
     } else if (filterType === 'age') {
@@ -60,7 +60,7 @@ function Search({ setStories, testStories }) {
   const handleAgeSwitch = (age) => {
     if (age === '3-5') {
       if (!ageOneSwitch) {
-        applyFilter('age', age)
+        addFilter('age', age)
       } else {
         removeFilter('age');
       }
@@ -69,7 +69,7 @@ function Search({ setStories, testStories }) {
       setAgeOneSwitch(!ageOneSwitch);
     } else if (age === '6-8') {
       if (!ageTwoSwitch) {
-        applyFilter('age', age)
+        addFilter('age', age)
       } else {
         removeFilter('age');
       }
@@ -78,7 +78,7 @@ function Search({ setStories, testStories }) {
       setAgeTwoSwitch(!ageTwoSwitch);
     } else if (age === '9-11') {
       if (!ageThreeSwitch) {
-        applyFilter('age', age)
+        addFilter('age', age)
       } else {
         removeFilter('age');
       }
@@ -91,7 +91,7 @@ function Search({ setStories, testStories }) {
   const handleGenreSwitch = (genre) => {
     if (genre === 'Fiction') {
       if (!genreFictionSwitch) {
-        applyFilter('genre', genre)
+        addFilter('genre', genre)
       } else {
         removeFilter('genre');
       }
@@ -102,7 +102,7 @@ function Search({ setStories, testStories }) {
       setGenreFictionSwitch(!genreFictionSwitch);
     } else if (genre === 'Mystery') {
       if (!genreMysterySwitch) {
-        applyFilter('genre', genre)
+        addFilter('genre', genre)
       } else {
         removeFilter('genre');
       }
@@ -113,7 +113,7 @@ function Search({ setStories, testStories }) {
       setGenreMysterySwitch(!genreMysterySwitch);
     } else if (genre === 'Fantasy') {
       if (!genreFantasySwitch) {
-        applyFilter('genre', genre)
+        addFilter('genre', genre)
       } else {
         removeFilter('genre');
       }
@@ -124,7 +124,7 @@ function Search({ setStories, testStories }) {
       setGenreFantasySwitch(!genreFantasySwitch);
     } else if (genre === 'Fairytale') {
       if (!genreFairytaleSwitch) {
-        applyFilter('genre', genre)
+        addFilter('genre', genre)
       } else {
         removeFilter('genre');
       }
@@ -135,7 +135,7 @@ function Search({ setStories, testStories }) {
       setGenreFairytaleSwitch(!genreFairytaleSwitch);
     } else if (genre === 'Sci-Fi') {
       if (!genreSciFiSwitch) {
-        applyFilter('genre', genre)
+        addFilter('genre', genre)
       } else {
         removeFilter('genre');
       }
@@ -151,7 +151,7 @@ function Search({ setStories, testStories }) {
     <View className="flex flex-col px-2 py-1">
       <View className="flex flex-row justify-between items-center">
         <TextInput
-          className="w-1/2 h-10 px-2 rounded-full bg-white"
+          className="w-2/5 h-10 px-2 rounded-full bg-white"
           placeholder="Search"
           onChangeText={(text) => handleSearch(text)}
         />
