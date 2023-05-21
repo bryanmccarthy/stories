@@ -32,26 +32,7 @@ function StoryScreen({ route, navigation }) {
 
   return (
     <View className="flex justify-center items-center w-full h-full bg-black">
-      <Page page={page} />
-      {/* Pagination Buttons */}
-      <View className="flex flex-row justify-between items-center w-full h-1/6">
-        <Text
-          onPress={() => {
-            if (page > 1) {
-              setPage(page - 1);
-            }
-        }}>
-          <Ionicons name="chevron-back" size={44} color="white" />
-        </Text>
-        <Text
-          onPress={() => {
-            if (page < length) {
-              setPage(page + 1);
-            }
-        }}>
-          <Ionicons name="chevron-forward" size={44} color="white" />
-        </Text>
-      </View>
+      <Page page={page} setPage={setPage} length={length} />
     </View>        
   );
 }
