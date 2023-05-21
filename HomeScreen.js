@@ -99,7 +99,6 @@ function HomeScreen({ navigation }) {
     setStoryTitle(story.title);
     setStoryGenre(story.genre);
     setStoryAge(story.age);
-    setStoryPage(story.page);
     setModalVisible(true);
   }
 
@@ -114,7 +113,7 @@ function HomeScreen({ navigation }) {
 
 
   return (
-    <SafeAreaView className="bg-indigo-200 w-full h-full">
+    <SafeAreaView className="bg-black w-full h-full">
       {/* Story Cover Modal */}
       <Modal
         animationType="none"

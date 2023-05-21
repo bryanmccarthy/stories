@@ -4,7 +4,7 @@ function Page({ page }) {
 
   return (
     <View className="flex justify-center">
-      <Text className="text-3xl">Page: {page}</Text>
+      <Text className="text-3xl text-white">Page: {page}</Text>
     </View>
   );
 }

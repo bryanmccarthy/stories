@@ -12,7 +12,6 @@ function Stories({ stories, navigation, handleShowModal }) {
           <GenreLabel genre={genre} />
           <StoriesRow 
             stories={stories} 
-            navigation={navigation} 
             handleShowModal={handleShowModal} 
             genre={genre} 
           />

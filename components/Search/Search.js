@@ -74,7 +74,7 @@ function Search({ setStories, testStories }) {
     <View className="flex flex-col px-2 py-1">
       <View className="flex flex-row justify-between items-center">
         <TextInput
-          className="w-1/2 h-10 px-2 shadow-sm shadow-slate-400 rounded-full bg-white"
+          className="w-1/2 h-10 px-2 rounded-full bg-white"
           placeholder="Search"
           onChangeText={(text) => handleSearch(text)}
         />
@@ -82,7 +82,7 @@ function Search({ setStories, testStories }) {
         <View className="flex flex-row">
           {/* Age Select */}
           <TouchableWithoutFeedback onPress={handleAgeModal}>
-            <View className={`flex flex-row shadow-sm shadow-slate-400 items-center mx-1 rounded-lg p-1 ${ageModalVisible ? 'bg-black' : 'bg-white'}`}>
+            <View className={`flex flex-row items-center mx-1 rounded-lg p-1 ${ageModalVisible ? 'bg-black' : 'bg-white'}`}>
               <Text className={`text-xl my-0.5 mx-2 ${ageModalVisible ? 'text-white' : 'text-black'}`}>Age</Text>
               <Ionicons
                 name="chevron-down"

@@ -31,7 +31,7 @@ function StoryScreen({ route, navigation }) {
   }, [navigation]);
 
   return (
-    <View className="flex justify-center items-center w-full h-full bg-slate-500">
+    <View className="flex justify-center items-center w-full h-full bg-black">
       <Page page={page} />
       {/* Pagination Buttons */}
       <View className="flex flex-row justify-between items-center w-full h-1/6">
