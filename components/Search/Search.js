@@ -17,10 +17,15 @@ function Search({ setStories, testStories }) {
   }
 
   const addFilter = (filter) => {
+    const filteredStories = testStories.filter(story => story.age === filter);
+    setStories(filteredStories);
+
     setFilterAge(filter);
   }
 
   const removeFilter = (filter) => {
+    setStories(testStories);
+
     setFilterAge('');
     setAgeOneSwitch(false);
     setAgeTwoSwitch(false);

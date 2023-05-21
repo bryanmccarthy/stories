@@ -182,7 +182,7 @@ function HomeScreen({ navigation }) {
 
   return (
     <SafeAreaView className="bg-indigo-200 w-full h-full">
-      {/* Modal */}
+      {/* Story Cover Modal */}
       <Modal
         animationType="none"
         transparent={true}
@@ -192,15 +192,15 @@ function HomeScreen({ navigation }) {
         }
       }>
         <TouchableWithoutFeedback onPress={() => setModalVisible(false)}>
-          <View className="flex flex-col justify-center items-center h-full">
-            <View className="flex flex-col justify-center items-center bg-white w-10/12 h-1/2 rounded-2xl">
+          <View className="flex flex-col justify-center items-center w-full h-full">
+            <View className="flex flex-col justify-center items-center bg-white w-10/12 h-1/2 rounded-2xl shadow-xl shadow-slate-500">
               <Text className="text-2xl font-bold mt-4">Story Info</Text>
               <Text className="text-lg font-bold mt-4">Title: {storyTitle}</Text>
               <Text className="text-lg font-bold mt-4">Genre: {storyGenre}</Text>
               <Text className="text-lg font-bold mt-4">Age: {storyAge}</Text>
               {/* Book Icon */}
               <TouchableWithoutFeedback onPress={() => handleStoryNavigation(storyID, storyTitle)}>
-                <View className="flex flex-row items-center justify-center border-solid border rounded-xl p-2 m-4">
+                <View className="flex flex-row items-center justify-center border-solid border rounded-md p-2 m-4">
                   <Text className="text-lg font-bold mr-4">Read</Text>
                   <Ionicons
                     name="book"
