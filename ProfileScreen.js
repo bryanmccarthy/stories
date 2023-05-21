@@ -12,12 +12,12 @@ function ProfileScreen({ navigation }) {
             navigation.goBack();
           }
         }>
-        <Ionicons name="return-down-back" size={34} color="black" />
+        <Ionicons name="return-down-back" size={34} color="white" />
         </Text>
       ),
       headerShown: true,
       headerTransparent: true,
-      headerTintColor: 'black',
+      headerTintColor: 'white',
       headerTitleStyle: {
         fontWeight: 'bold',
       },
@@ -25,7 +25,7 @@ function ProfileScreen({ navigation }) {
   }, [navigation]);
 
   return (
-    <View className="flex bg-indigo-200 w-full h-full">
+    <View className="flex bg-black w-full h-full">
     </View>
   );
 }
