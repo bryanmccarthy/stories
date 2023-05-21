@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Header from './components/Header/Header';
 import Search from './components/Search/Search';
 import Stories from './components/Stories/Stories';
+import { Ionicons } from '@expo/vector-icons';
 
 const testStories = [
   {
@@ -150,6 +151,7 @@ const testStories = [
 function HomeScreen({ navigation }) {
   const [stories, setStories] = useState(testStories);
   const [modalVisible, setModalVisible] = useState(false);
+  const [storyID, setStoryID] = useState('');
   const [storyTitle, setStoryTitle] = useState('');
   const [storyGenre, setStoryGenre] = useState('');
   const [storyAge, setStoryAge] = useState('');
@@ -161,17 +163,28 @@ function HomeScreen({ navigation }) {
   }, []);
 
   const handleShowModal = (story) => {
+    setStoryID(story.id);
     setStoryTitle(story.title);
     setStoryGenre(story.genre);
     setStoryAge(story.age);
     setModalVisible(true);
   }
 
+  const handleStoryNavigation = (storyID, storyTitle) => {
+    setModalVisible(false);
+
+    navigation.navigate('Story', {
+      storyID: storyID,
+      storyTitle: storyTitle
+    });
+  }
+
+
   return (
     <SafeAreaView className="bg-indigo-200 w-full h-full">
       {/* Modal */}
       <Modal
-        animationType="slide"
+        animationType="none"
         transparent={true}
         visible={modalVisible}
         onRequestClose={() => {
@@ -185,6 +198,17 @@ function HomeScreen({ navigation }) {
               <Text className="text-lg font-bold mt-4">Title: {storyTitle}</Text>
               <Text className="text-lg font-bold mt-4">Genre: {storyGenre}</Text>
               <Text className="text-lg font-bold mt-4">Age: {storyAge}</Text>
+              {/* Book Icon */}
+              <TouchableWithoutFeedback onPress={() => handleStoryNavigation(storyID, storyTitle)}>
+                <View className="flex flex-row items-center justify-center border-solid border rounded-xl p-2 m-4">
+                  <Text className="text-lg font-bold mr-4">Read</Text>
+                  <Ionicons
+                    name="book"
+                    size={32}
+                    style={{ color: 'black' }}
+                  />
+              </View>
+              </TouchableWithoutFeedback>
             </View>
           </View>
         </TouchableWithoutFeedback>
