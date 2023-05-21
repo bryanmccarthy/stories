@@ -5,6 +5,7 @@ import { useState } from 'react';
 function Search({ setStories, testStories }) {
   const [filterAge, setFilterAge] = useState('');
   const [ageModalVisible, setAgeModalVisible] = useState(false);
+  const [filteredStories, setFilteredStories] = useState(testStories);
 
   // Age Switches
   const [ageOneSwitch, setAgeOneSwitch] = useState(false);
@@ -12,12 +13,13 @@ function Search({ setStories, testStories }) {
   const [ageThreeSwitch, setAgeThreeSwitch] = useState(false);
 
   const handleSearch = (text) => {
-    const filteredStories = testStories.filter(story => story.title.toLowerCase().includes(text.toLowerCase()));
-    setStories(filteredStories);
+    const results = filteredStories.filter(story => story.title.toLowerCase().includes(text.toLowerCase()));
+    setStories(results);
   }
 
   const addFilter = (filter) => {
     const filteredStories = testStories.filter(story => story.age === filter);
+    setFilteredStories(filteredStories);
     setStories(filteredStories);
 
     setFilterAge(filter);
@@ -25,6 +27,7 @@ function Search({ setStories, testStories }) {
 
   const removeFilter = (filter) => {
     setStories(testStories);
+    setFilteredStories(testStories);
 
     setFilterAge('');
     setAgeOneSwitch(false);
@@ -71,7 +74,7 @@ function Search({ setStories, testStories }) {
     <View className="flex flex-col px-2 py-1">
       <View className="flex flex-row justify-between items-center">
         <TextInput
-          className="w-2/5 h-10 px-2 rounded-full bg-white"
+          className="w-1/2 h-10 px-2 shadow-sm shadow-slate-400 rounded-full bg-white"
           placeholder="Search"
           onChangeText={(text) => handleSearch(text)}
         />
@@ -79,8 +82,8 @@ function Search({ setStories, testStories }) {
         <View className="flex flex-row">
           {/* Age Select */}
           <TouchableWithoutFeedback onPress={handleAgeModal}>
-            <View className={`flex flex-row items-center mx-1 rounded-lg p-1 ${ageModalVisible ? 'bg-black' : 'bg-white'}`}>
-              <Text className={`text-xl mr-2 ${ageModalVisible ? 'text-white' : 'text-black'}`}>Age</Text>
+            <View className={`flex flex-row shadow-sm shadow-slate-400 items-center mx-1 rounded-lg p-1 ${ageModalVisible ? 'bg-black' : 'bg-white'}`}>
+              <Text className={`text-xl my-0.5 mx-2 ${ageModalVisible ? 'text-white' : 'text-black'}`}>Age</Text>
               <Ionicons
                 name="chevron-down"
                 size={28}
@@ -93,14 +96,8 @@ function Search({ setStories, testStories }) {
       {/* Filters active */}
       <View className="flex flex-row items-center">
         { filterAge && (
-          <View className="flex flex-row rounded-full items-center py-0.5 px-2 m-1 bg-white">
-            <Text className="text-xl mr-2">{filterAge}</Text>
-            <Ionicons
-              name="close-circle"
-              size={28}
-              style={{ color: 'black' }}
-              onPress={() => removeFilter('age')}
-            />
+          <View className="flex flex-row shadow-sm shadow-slate-400 rounded-full items-center py-0.5 px-2 m-1 bg-white">
+            <Text className="text-xl px-2">{filterAge}</Text>
           </View>
         )}
       </View>
@@ -120,9 +117,8 @@ function Search({ setStories, testStories }) {
                 <Text className="text-lg font-bold">3 - 5</Text>
                 <Switch
                   className="mx-4"
-                  trackColor={{ false: "#767577", true: "#81b0ff" }}
-                  thumbColor={filterAge ? "#f5dd4b" : "#f4f3f4"}
-                  ios_backgroundColor="#3e3e3e"
+                  trackColor={{ false: "#ffffff", true: "#000000" }}
+                  thumbColor={{ true: "#ffffff", false: "#000000" }}
                   value={ageOneSwitch}
                   onValueChange={() => handleAgeSwitch('3-5')}
                 />
@@ -131,9 +127,8 @@ function Search({ setStories, testStories }) {
                 <Text className="text-lg font-bold">6 - 8</Text>
                 <Switch
                   className="mx-4"
-                  trackColor={{ false: "#767577", true: "#81b0ff" }}
-                  thumbColor={filterAge ? "#f5dd4b" : "#f4f3f4"}
-                  ios_backgroundColor="#3e3e3e"
+                  trackColor={{ false: "#ffffff", true: "#000000" }}
+                  thumbColor={{ true: "#ffffff", false: "#000000" }}
                   value={ageTwoSwitch}
                   onValueChange={() => handleAgeSwitch('6-8')}
                 />
@@ -142,9 +137,8 @@ function Search({ setStories, testStories }) {
                 <Text className="text-lg font-bold">9-11</Text>
                 <Switch
                   className="mx-4"
-                  trackColor={{ false: "#767577", true: "#81b0ff" }}
-                  thumbColor={filterAge ? "#f5dd4b" : "#f4f3f4"}
-                  ios_backgroundColor="#3e3e3e"
+                  trackColor={{ false: "#ffffff", true: "#000000" }}
+                  thumbColor={{ true: "#ffffff", false: "#000000" }}
                   value={ageThreeSwitch}
                   onValueChange={() => handleAgeSwitch('9-11')}
                 />
