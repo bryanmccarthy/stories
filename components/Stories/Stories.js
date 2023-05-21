@@ -2,7 +2,7 @@ import { ScrollView, View } from 'react-native';
 import StoriesRow from './StoriesRow';
 import GenreLabel from './GenreLabel';
 
-const genres = ['Fiction', 'Mystery', 'Fantasy', 'Fairytale', 'Sci-fi'];
+const genres = ['Fiction', 'Mystery', 'Fantasy', 'Sci-fi'];
 
 function Stories({ stories, navigation, handleShowModal }) {
   return (

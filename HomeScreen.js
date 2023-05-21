@@ -52,7 +52,7 @@ const testStories = [
   {
     id: 7,
     title: 'Animal farm',
-    genre: 'Fairytale',
+    genre: 'Fiction',
     age: '3-5',
     cover: require('./assets/7.jpeg')
   },
@@ -72,75 +72,6 @@ const testStories = [
   },
   {
     id: 10,
-    title: 'The Big Bang',
-    genre: 'Mystery',
-    age: '6-8',
-    cover: require('./assets/10.jpeg')
-  },
-  {
-    id: 11,
-    title: 'The little ant',
-    genre: 'Fiction',
-    age: '3-5',
-    cover: require('./assets/1.jpeg')
-  },
-  {
-    id: 12,
-    title: 'Henry the mouse',
-    genre: 'Mystery',
-    age: '6-8',
-    cover: require('./assets/2.jpeg')
-  },
-  {
-    id: 13,
-    title: 'Bob the dog',
-    genre: 'Fiction',
-    age: '3-5',
-    cover: require('./assets/3.png')
-  },
-  {
-    id: 14,
-    title: 'The frog prince',
-    genre: 'Fantasy',
-    age: '3-5',
-    cover: require('./assets/4.jpeg')
-  },
-  {
-    id: 15,
-    title: 'A day in the life of a cat',
-    genre: 'Mystery',
-    age: '6-8',
-    cover: require('./assets/5.jpeg')
-  },
-  {
-    id: 16,
-    title: 'Little blue bird',
-    genre: 'Fiction',
-    cover: require('./assets/6.jpeg')
-  },
-  {
-    id: 17,
-    title: 'Animal farm',
-    genre: 'Fairytale',
-    age: '3-5',
-    cover: require('./assets/7.jpeg')
-  },
-  {
-    id: 18,
-    title: 'Snakes and ladders',
-    genre: 'Fantasy',
-    age: '6-8',
-    cover: require('./assets/8.png')
-  },
-  {
-    id: 19,
-    title: 'Over the moon',
-    genre: 'Sci-fi',
-    age: '3-5',
-    cover: require('./assets/9.png')
-  },
-  {
-    id: 20,
     title: 'The Big Bang',
     genre: 'Mystery',
     age: '6-8',
