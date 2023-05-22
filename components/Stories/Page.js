@@ -1,10 +1,10 @@
-import { View, Text } from 'react-native';
+import { View, Text, ImageBackground } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-function Page({ page, setPage, length }) {
+function Page({ page, setPage, length, images }) {
 
   return (
-    <View className="flex justify-center items-center w-full h-full">
+    <ImageBackground className="flex justify-center items-center w-full h-full" source={images[page-1]}>
       <Text className="text-3xl text-white">Page: {page}</Text>
 
       {/* Pagination Buttons */}
@@ -15,7 +15,7 @@ function Page({ page, setPage, length }) {
               setPage(page - 1);
             }
         }}>
-          <Ionicons name="chevron-back" size={44} color="white" />
+          <Ionicons name="chevron-back" size={56} color="white" />
         </Text>
         <Text
           onPress={() => {
@@ -23,10 +23,10 @@ function Page({ page, setPage, length }) {
               setPage(page + 1);
             }
         }}>
-          <Ionicons name="chevron-forward" size={44} color="white" />
+          <Ionicons name="chevron-forward" size={56} color="white" />
         </Text>
       </View>
-    </View>
+    </ImageBackground>
   );
 }
 
